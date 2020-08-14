@@ -20,9 +20,13 @@ import javax.validation.constraints.Size;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import lombok.Data;
+
+@Data
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 public class Company implements Serializable {
+	
 	/**
 	 *
 	 */
@@ -52,70 +56,4 @@ public class Company implements Serializable {
 	@OneToMany(mappedBy = "candidatePK.company")
 	private Set<Candidate> candidates;
 
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getSlug() {
-		return slug;
-	}
-
-	public void setSlug(String slug) {
-		this.slug = slug;
-	}
-
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
-	
-	public Set<Candidate> getCandidates() {
-		return candidates;
-	}
-
-	public void setCandidates(Set<Candidate> candidates) {
-		this.candidates = candidates;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Company other = (Company) obj;
-		if (id != other.id)
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Company [id=" + id + ", name=" + name + "]";
-	}
 }
